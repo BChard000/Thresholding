@@ -9,7 +9,7 @@ class ImageThresholding {
     private Mat grayImage;
     private Mat thresholdedImage;
 
-    public void Tresholding(String imagePath) {
+    public void ImageThresholding(String imagePath) {
         this.image = Imgcodecs.imread(imagePath);
         this.grayImage = new Mat();
         this.thresholdedImage = new Mat();
@@ -35,12 +35,12 @@ class ImageThresholding {
 }
 
 // V2
-class AdaptiveThresholdingProcessor {
+class AdaptiveThresholding {
     private Mat sourceImage;
     private Mat grayImage;
     private Mat thresholdedImage;
 
-    public void Processor(String imagePath) {
+    public void AdaptiveThresholding(String imagePath) {
         this.sourceImage = Imgcodecs.imread(imagePath);
         if (this.sourceImage.empty()) {
             throw new IllegalArgumentException("Cannot read image: " + imagePath);
@@ -83,7 +83,7 @@ public class Main {
 
         // V1
         ImageThresholding thresholding = new ImageThresholding();
-        thresholding.Tresholding("filepath");
+        thresholding.ImageThresholding("imagePath");
         try {
             thresholding.convertToGrayscale();
             thresholding.applyThreshold(1, 255);
@@ -93,8 +93,8 @@ public class Main {
         }
 
         // V2
-        AdaptiveThresholdingProcessor processor = new AdaptiveThresholdingProcessor();
-        processor.Processor("filepath");
+        AdaptiveThresholding processor = new AdaptiveThresholding();
+        processor.AdaptiveThresholding("imagePath");
         try {
             processor.convertToGrayscale();
             processor.applyAdaptiveThresholding();
